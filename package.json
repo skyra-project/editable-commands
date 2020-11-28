@@ -1,0 +1,100 @@
+{
+	"name": "@skyra/editable-commands",
+	"version": "1.0.0",
+	"description": "A framework agnostic library for editable commands.",
+	"author": "@skyra",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.es.js",
+	"types": "dist/index.d.ts",
+	"homepage": "https://skyra-project.github.io/editable-commands",
+	"private": false,
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"prepublishOnly": "yarn build",
+		"lint": "eslint src --ext ts --fix",
+		"format": "prettier --write src/**/*.ts",
+		"docs": "typedoc",
+		"update": "yarn upgrade-interactive --latest",
+		"build": "rollup -c rollup.config.ts",
+		"watch": "yarn build -w",
+		"sversion": "standard-version",
+		"commit": "git-cz",
+		"cz": "git-cz"
+	},
+	"dependencies": {
+		"discord.js": "^12.5.1"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^11.0.0",
+		"@commitlint/config-conventional": "^11.0.0",
+		"@sapphire/eslint-config": "^1.0.4",
+		"@sapphire/ts-config": "^1.0.3",
+		"@types/node": "^14.14.10",
+		"@typescript-eslint/eslint-plugin": "^4.8.2",
+		"@typescript-eslint/parser": "^4.8.2",
+		"cz-conventional-changelog": "^3.3.0",
+		"discord-api-types": "^0.9.1",
+		"eslint": "^7.14.0",
+		"eslint-config-prettier": "^6.15.0",
+		"eslint-plugin-prettier": "^3.1.4",
+		"husky": "^4.3.0",
+		"lint-staged": "^10.5.2",
+		"prettier": "^2.2.1",
+		"pretty-quick": "^3.1.0",
+		"rollup": "^2.23.3",
+		"rollup-plugin-cleaner": "^1.0.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.29.0",
+		"standard-version": "^9.0.0",
+		"typedoc": "^0.19.2",
+		"typescript": "^4.1.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skyra-project/editable-commands.git"
+	},
+	"engines": {
+		"node": ">=12",
+		"npm": ">=6"
+	},
+	"keywords": [
+		"discord.js",
+		"editable",
+		"commands",
+		"utility"
+	],
+	"bugs": {
+		"url": "https://github.com/skyra-project/editable-commands/issues"
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+			"pre-commit": "yarn pretty-quick --staged && yarn lint-staged"
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"resolutions": {
+		"acorn": "^7.3.1",
+		"minimist": "^1.2.2",
+		"kind-of": "^6.0.3",
+		"dot-prop": "^5.2.0"
+	}
+}
