@@ -5,13 +5,17 @@
 	"author": "@skyra",
 	"license": "MIT",
 	"main": "dist/index.js",
-	"module": "dist/index.es.js",
+	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"homepage": "https://skyra-project.github.io/editable-commands",
 	"private": false,
 	"files": [
 		"dist"
 	],
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js"
+	},
 	"scripts": {
 		"prepublishOnly": "yarn build",
 		"lint": "eslint src --ext ts --fix",
@@ -24,7 +28,7 @@
 		"commit": "git-cz",
 		"cz": "git-cz"
 	},
-	"dependencies": {
+	"peerDependencies": {
 		"discord.js": "^12.5.1"
 	},
 	"devDependencies": {
@@ -57,7 +61,7 @@
 		"url": "git+https://github.com/skyra-project/editable-commands.git"
 	},
 	"engines": {
-		"node": ">=12",
+		"node": ">=14",
 		"npm": ">=6"
 	},
 	"keywords": [

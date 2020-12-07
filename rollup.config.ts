@@ -13,7 +13,7 @@ export default {
 			sourcemap: true
 		},
 		{
-			file: './dist/index.es.mjs',
+			file: './dist/index.mjs',
 			format: 'es',
 			exports: 'named',
 			sourcemap: true
@@ -25,7 +25,7 @@ export default {
 		}),
 		typescript({ tsconfig: resolveDir(__dirname, 'src', 'tsconfig.json') }),
 		terser({
-			ecma: 2019,
+			ecma: 2020,
 			// This will ensure that whenever Rollup is in watch (dev) mode, console logs will not be removed
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			compress: { drop_console: !Reflect.has(process.env, 'ROLLUP_WATCH') },
