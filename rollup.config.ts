@@ -19,6 +19,7 @@ export default {
 			sourcemap: true
 		}
 	],
+	external: ['discord.js'],
 	plugins: [
 		cleaner({
 			targets: ['./dist/']
