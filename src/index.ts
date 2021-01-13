@@ -35,7 +35,7 @@ export class ExtendedMessage extends Structures.get('Message') {
 			return mes;
 		});
 
-		const responses = messageRepliesCache.get(this)?.filter((message) => !message.deleted) ?? [];
+		const responses = this.responses.filter((message) => !message.deleted);
 
 		// If the message was configured to send multiple messages:
 		if (multiple) {
@@ -110,10 +110,15 @@ export class ExtendedMessage extends Structures.get('Message') {
 		messageRepliesCache.set(this, [message]);
 		return message;
 	}
+
+	public get responses(): readonly Message[] {
+		return messageRepliesCache.get(this) ?? [];
+	}
 }
 
 declare module 'discord.js' {
 	export interface Message {
+		readonly responses: readonly Message[];
 		send(content: APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
 		send(options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
 		send(options: MessageOptions | APIMessage): Promise<Message | Message[]>;
