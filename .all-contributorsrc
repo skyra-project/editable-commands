@@ -14,6 +14,20 @@
 			"avatar_url": "https://avatars0.githubusercontent.com/u/24852502?v=4",
 			"profile": "https://github.com/kyranet",
 			"contributions": ["code", "test", "ideas", "infra"]
+		},
+		{
+			"login": "Favna",
+			"name": "Jeroen Claassens",
+			"avatar_url": "https://avatars3.githubusercontent.com/u/4019718?v=4",
+			"profile": "https://favware.tech/",
+			"contributions": ["infra"]
+		},
+		{
+			"login": "depfu[bot]",
+			"name": "depfu[bot]",
+			"avatar_url": "https://avatars3.githubusercontent.com/in/715?v=4",
+			"profile": "https://github.com/apps/depfu",
+			"contributions": ["maintenance"]
 		}
 	],
 	"contributorsPerLine": 7
