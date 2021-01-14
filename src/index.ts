@@ -10,21 +10,13 @@ import {
 	Structures
 } from 'discord.js';
 
-function testingFun() {
-	return undefined;
-}
-
-const testing = await testingFun();
-
-console.log(testing.kaboom);
-
 export const messageRepliesCache = new WeakMap<Message, readonly Message[]>();
 
 export class ExtendedMessage extends Structures.get('Message') {
-		public send(content: APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
-				public send(options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
-						public send(options: MessageOptions | APIMessage): Promise<Message | Message[]>;
-public send(content: StringResolvable, options: (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
+	public send(content: APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
+	public send(options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
+	public send(options: MessageOptions | APIMessage): Promise<Message | Message[]>;
+	public send(content: StringResolvable, options: (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
 	public send(content: StringResolvable, options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
 	public send(content: StringResolvable, options: MessageOptions): Promise<Message | Message[]>;
 	public async send(content: any, options?: any): Promise<Message | Message[]> {
