@@ -1,8 +1,6 @@
 # @skyra/editable-commands
 
 [![GitHub](https://img.shields.io/github/license/skyra-project/editable-commands)](https://github.com/skyra-project/editable-commands/blob/main/LICENSE.md)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/skyra-project/editable-commands.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/skyra-project/editable-commands/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/skyra-project/editable-commands.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/skyra-project/editable-commands/context:javascript)
 [![Depfu](https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg)](https://depfu.com/github/skyra-project/editable-commands?project_id=14147)
 
 [![npm](https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@skyra/editable-commands)
