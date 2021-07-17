@@ -1,131 +1,84 @@
-import type { RESTPatchAPIChannelMessageJSONBody } from 'discord-api-types/v6';
-import {
-	APIMessage,
-	APIMessageContentResolvable,
-	Message,
-	MessageAdditions,
-	MessageOptions,
-	SplitOptions,
-	StringResolvable,
-	Structures
-} from 'discord.js';
+import { Message, MessageOptions, MessagePayload, MessageTarget, ReplyMessageOptions, ReplyOptions, WebhookMessageOptions } from 'discord.js';
 
-export const messageRepliesCache = new WeakMap<Message, readonly Message[]>();
+const replies = new WeakMap<Message, Message>();
 
-export class ExtendedMessage extends Structures.get('Message') {
-	public send(content: APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
-	public send(options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
-	public send(options: MessageOptions | APIMessage): Promise<Message | Message[]>;
-	public send(content: StringResolvable, options: (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
-	public send(content: StringResolvable, options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
-	public send(content: StringResolvable, options: MessageOptions): Promise<Message | Message[]>;
-	public async send(content: any, options?: any): Promise<Message | Message[]> {
-		const combinedOptions = APIMessage.transformOptions(content, options);
-
-		const resolved = new APIMessage(this.channel, combinedOptions).resolveData();
-		const multiple = Array.isArray(Reflect.get(resolved.data!, 'content'));
-		const newMessages = resolved.split().map((mes) => {
-			const data = mes.data as RESTPatchAPIChannelMessageJSONBody | null;
-			if (data) {
-				// Command editing should always remove embeds and content if none is provided
-				data.embed ??= null;
-				data.content ??= null;
-			}
-
-			return mes;
-		});
-
-		const responses = this.responses.filter((message) => !message.deleted);
-
-		// If the message was configured to send multiple messages:
-		if (multiple) {
-			// We create two queues, one for deletes, another for updates:
-			const deletePromises: Promise<unknown>[] = [];
-			const messagePromises: Promise<Message>[] = [];
-
-			// For each message we are sending:
-			while (newMessages.length) {
-				// We will remove the message from the queue, and remove the first message from the responses:
-				const newMessage = newMessages.shift()!;
-				const oldMessage = responses.shift();
-
-				// If there are no more responses to be edited, we send a new message:
-				if (oldMessage === undefined) {
-					messagePromises.push(this.channel.send(newMessage) as Promise<Message>);
-					continue;
-				}
-
-				// If the current message contained an attachment, we delete the message and unshift, so we check for the next response:
-				if (oldMessage.attachments.size > 0) {
-					deletePromises.push(oldMessage.delete().catch(() => null));
-					newMessages.unshift(newMessage);
-					continue;
-				}
-
-				// The response can be edited as it has no attachments, we fetch the message
-				messagePromises.push(oldMessage.edit(newMessage).then(() => oldMessage));
-			}
-
-			while (responses.length) {
-				deletePromises.push(
-					responses
-						.shift()!
-						.delete()
-						.catch(() => null)
-				);
-			}
-
-			if (deletePromises.length > 0) await Promise.all(deletePromises);
-			const newResponses = await Promise.all(messagePromises);
-
-			messageRepliesCache.set(this, newResponses);
-			return newResponses;
-		}
-
-		// If there are too many messages, delete the extra ones.
-		if (responses.length > 1) await Promise.all(responses.map((message) => message.delete().catch(() => null)));
-
-		// If there is at least one message...
-		if (responses.length > 0) {
-			const [response] = responses;
-
-			// And said message had a file...
-			if (response.attachments.size > 0) {
-				// Then delete the file and fallback.
-				await this.channel.messages.delete(response.id);
-			} else {
-				// Otherwise, we fetch the message, just to make sure it exists:
-				const previousMessage = await this.channel.messages.fetch(response.id).catch(() => null);
-
-				// If the message existed, we edit it and return the original message (not the one returned by the method):
-				if (previousMessage !== null) {
-					await previousMessage.edit(newMessages[0]);
-					return previousMessage;
-				}
-			}
-		}
-
-		// Fallback for all previous conditions: we send a message, set it as a response, and return the sent message:
-		const message = (await this.channel.send(newMessages[0])) as Message;
-		messageRepliesCache.set(this, [message]);
-		return message;
-	}
-
-	public get responses(): readonly Message[] {
-		return messageRepliesCache.get(this) ?? [];
-	}
+/**
+ * Tracks a response with a message, in a way that if {@link send} is called with `message`, `response` will be edited.
+ * @param message The message to track when editing.
+ * @param response The response to edit when using send with `message`.
+ */
+export function track(message: Message, response: Message): void {
+	replies.set(message, response);
 }
 
-declare module 'discord.js' {
-	export interface Message {
-		readonly responses: readonly Message[];
-		send(content: APIMessageContentResolvable | (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
-		send(options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
-		send(options: MessageOptions | APIMessage): Promise<Message | Message[]>;
-		send(content: StringResolvable, options: (MessageOptions & { split?: false }) | MessageAdditions): Promise<Message>;
-		send(content: StringResolvable, options: MessageOptions & { split: true | SplitOptions }): Promise<Message[]>;
-		send(content: StringResolvable, options: MessageOptions): Promise<Message | Message[]>;
-	}
+/**
+ * Removes the tracked response for `message`.
+ * @param message The message to free from tracking.
+ * @returns Whether the message was tracked.
+ */
+export function free(message: Message): boolean {
+	return replies.delete(message);
 }
 
-Structures.extend('Message', () => ExtendedMessage);
+/**
+ * Gets the tracked response to `message`, if any was tracked and was not deleted.
+ * @param message The message to get the reply from.
+ * @returns The replied message, if any.
+ */
+export function get(message: Message): Message | null {
+	const entry = replies.get(message);
+	if (entry === undefined) return null;
+	if (entry.deleted) {
+		replies.delete(message);
+		return null;
+	}
+
+	return entry;
+}
+
+/**
+ * Sends a message as a response for `message`, and tracks it.
+ * @param message The message to replies to.
+ * @param options The options for the message sending, identical to `TextBasedChannel#send`'s options.
+ * @returns The response message.
+ */
+export async function send(message: Message, options: string | MessageOptions | WebhookMessageOptions): Promise<Message> {
+	const payload = await resolvePayload(message.channel, options);
+	return sendPayload(message, payload);
+}
+
+/**
+ * Sends a reply message as a response for `message`, and tracks it.
+ * @param message The message to replies to.
+ * @param options The options for the message sending, identical to `TextBasedChannel#send`'s options.
+ * @returns The response message.
+ */
+export async function reply(message: Message, options: string | ReplyMessageOptions): Promise<Message> {
+	const payload = await resolvePayload(message.channel, options, { reply: resolveReplyOptions(message, options) });
+	return sendPayload(message, payload);
+}
+
+function resolvePayload(
+	target: MessageTarget,
+	options: string | MessageOptions | WebhookMessageOptions,
+	extra?: MessageOptions | WebhookMessageOptions | undefined
+) {
+	if (typeof options === 'string') options = { content: options };
+	else options = { content: null, embeds: [], ...options };
+
+	return MessagePayload.create(target, options, extra).resolveData().resolveFiles();
+}
+
+function resolveReplyOptions(message: Message, options: string | ReplyMessageOptions): ReplyOptions {
+	if (typeof options === 'string') return { messageReference: message, failIfNotExists: message.client.options.failIfNotExists };
+	return { messageReference: message, failIfNotExists: options.failIfNotExists ?? message.client.options.failIfNotExists };
+}
+
+async function sendPayload(message: Message, payload: MessagePayload): Promise<Message> {
+	const existing = get(message);
+
+	const response = await (existing ? existing.edit(payload) : message.channel.send(payload));
+	track(message, response);
+
+	return response;
+}
