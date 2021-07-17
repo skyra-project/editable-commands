@@ -22,7 +22,7 @@
 
 ## About
 
--   @skyra/editable-commands is a framework agnostic implementation of editable commands.
+-   @skyra/editable-commands is a framework agnostic implementation of editable commands for discord.js v13.
 
 ## Installation and Usage
 

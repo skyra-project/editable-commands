@@ -29,9 +29,6 @@
 		"prepublishOnly": "yarn build",
 		"prepare": "husky install .github/husky"
 	},
-	"peerDependencies": {
-		"discord.js": "^12.5.3"
-	},
 	"devDependencies": {
 		"@commitlint/cli": "^12.1.4",
 		"@commitlint/config-conventional": "^12.1.4",

@@ -62,7 +62,7 @@ function resolvePayload(
 	target: MessageTarget,
 	options: string | MessageOptions | WebhookMessageOptions,
 	extra?: MessageOptions | WebhookMessageOptions | undefined
-) {
+): Promise<MessagePayload> {
 	if (typeof options === 'string') options = { content: options };
 	else options = { content: null, embeds: [], ...options };
 
