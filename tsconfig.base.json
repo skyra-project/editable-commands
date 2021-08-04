@@ -1,6 +1,3 @@
 {
-	"extends": "@sapphire/ts-config",
-	"compilerOptions": {
-		"target": "ES2020"
-	}
+	"extends": "@sapphire/ts-config"
 }

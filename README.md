@@ -1,5 +1,7 @@
 <div align="center">
 
+![Skyra Logo](https://cdn.skyra.pw/gh-assets/skyra_avatar.png)
+
 # @skyra/editable-commands
 
 **A framework agnostic library for editable commands**
@@ -22,7 +24,7 @@
 -   @skyra/editable-commands is a framework agnostic implementation of editable commands for discord.js v13.
 -   Supports CommonJS and ES Modules.
 
-## Installation and Usage
+## Installation
 
 You can use the following command to install this package, or replace `npm install` with your package manager of choice.
 
@@ -32,7 +34,9 @@ npm install @skyra/editable-commands
 
 ## Usage
 
-**For CommonJS**:
+### CommonJS
+
+#### Without a framework
 
 ```js
 const { send } = require('@skyra/editable-commands');
@@ -46,7 +50,37 @@ client.on('messageUpdate', (_oldMessage, newMessage) => {
 });
 ```
 
-**For ESM**:
+#### With [Sapphire Framework][sapphire]
+
+```js
+const { send } = require('@skyra/editable-commands');
+const { Command } = require('@sapphire/framework');
+const { MessageEmbed } = require('discord.js');
+
+module.exports = class UserCommand extends Command {
+	constructor(context, options) {
+		super(context, {
+			...options,
+			description: 'A very cool command',
+			requiredClientPermissions: ['EMBED_LINKS']
+		});
+	}
+
+	async run(message, args) {
+		const embed = new MessageEmbed()
+			.setURL('https://github.com/skyra-project/editable-commands')
+			.setColor('#7586D8')
+			.setDescription('Example description')
+			.setTimestamp();
+
+		return send(message, { embeds: [embed] });
+	}
+};
+```
+
+### ESM
+
+#### Without a framework
 
 ```ts
 import { send } from '@skyra/editable-commands';
@@ -59,6 +93,33 @@ client.on('messageUpdate', (_oldMessage, newMessage) => {
 	send(newMessage, 'This is my new reply!');
 });
 ```
+
+#### With [Sapphire Framework][sapphire]
+
+```ts
+import { ApplyOptions } from '@sapphire/decorators';
+import { send } from '@skyra/editable-commands';
+import { Command, CommandOptions, Args } from '@sapphire/framework';
+import { Message, MessageEmbed } from 'discord.js';
+
+@ApplyOptions<CommandOptions>({
+	description: 'A very cool command',
+	requiredClientPermissions: ['EMBED_LINKS']
+})
+export class UserCommand extends Command {
+	public async run(message: Message, args: Args) {
+		const embed = new MessageEmbed()
+			.setURL('https://github.com/skyra-project/editable-commands')
+			.setColor('#7586D8')
+			.setDescription('Example description')
+			.setTimestamp();
+
+		return send(message, { embeds: [embed] });
+	}
+}
+```
+
+---
 
 ## Buy us some doughnuts
 
@@ -102,3 +163,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+[sapphire]: https://github.com/sapphiredev/framework
