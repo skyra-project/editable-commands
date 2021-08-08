@@ -20,7 +20,7 @@
 ## Features
 
 -   @skyra/editable-commands is a framework agnostic implementation of editable commands for discord.js v13.
--   Supports CommonJS and ES Module.
+-   Supports CommonJS and ES Modules.
 
 ## Installation and Usage
 
@@ -37,7 +37,7 @@ npm install @skyra/editable-commands
 ```js
 const { send } = require('@skyra/editable-commands');
 
-client.on('messageCreate', message => {
+client.on('messageCreate', (message) => {
 	send(message, 'This is my reply!');
 });
 ```
@@ -47,7 +47,7 @@ client.on('messageCreate', message => {
 ```ts
 import { send } from '@skyra/editable-commands';
 
-client.on('messageCreate', message => {
+client.on('messageCreate', (message) => {
 	send(message, 'This is my reply!');
 });
 ```
