@@ -105,7 +105,7 @@ import { send } from '@skyra/editable-commands';
 	requiredClientPermissions: ['EMBED_LINKS']
 })
 export class UserCommand extends Command {
-	public async run(message: Message) {
+	public run(message: Message) {
 		const embed = new MessageEmbed()
 			.setURL('https://github.com/skyra-project/editable-commands')
 			.setColor('#7586D8')
