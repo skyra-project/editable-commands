@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/skyra-project/editable-commands/compare/v2.0.0...v2.1.0) (2021-08-08)
+
+### Features
+
+-   added editable attachments support ([#28](https://github.com/skyra-project/editable-commands/issues/28)) ([073a7ea](https://github.com/skyra-project/editable-commands/commit/073a7ead898d5bf1f5e321b235f5af5f21eee858))
+
 ## [2.0.0](https://github.com/skyra-project/editable-commands/compare/v1.0.0...v2.0.0) (2021-08-04)
 
 ### ⚠ BREAKING CHANGES
