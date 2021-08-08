@@ -1,4 +1,8 @@
+<div align="center">
+
 # @skyra/editable-commands
+
+**A framework agnostic library for editable commands**
 
 [![GitHub](https://img.shields.io/github/license/skyra-project/editable-commands)](https://github.com/skyra-project/editable-commands/blob/main/LICENSE.md)
 [![Depfu](https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg)](https://depfu.com/github/skyra-project/editable-commands?project_id=14147)
@@ -7,58 +11,48 @@
 ![npm bundle size minified (scoped)](https://img.shields.io/bundlephobia/min/@skyra/editable-commands?label=minified&logo=webpack)
 ![npm bundle size minzipped (scoped)](https://img.shields.io/bundlephobia/minzip/@skyra/editable-commands?label=minified&logo=webpack)
 
-**Table of Contents**
+[![Support Server](https://discord.com/api/guilds/254360814063058944/embed.png?style=banner2)](https://join.skyra.pw)
 
--   [@skyra/editable-commands](#skyraeditable-commands)
-    -   [About](#about)
-    -   [Installation and Usage](#installation-and-usage)
-        -   [Package managers](#package-managers)
-            -   [Usage](#usage)
-    -   [Meta](#meta)
-        -   [License](#license)
-        -   [Contributing](#contributing)
-        -   [Buy us some doughnuts](#buy-us-some-doughnuts)
-        -   [Contributors ✨](#contributors-%E2%9C%A8)
+</div>
 
-## About
+---
+
+## Features
 
 -   @skyra/editable-commands is a framework agnostic implementation of editable commands for discord.js v13.
+-   Supports CommonJS and ES Module.
 
 ## Installation and Usage
 
-### Package managers
+You can use the following command to install this package, or replace `npm install` with your package manager of choice.
 
-```bash
-yarn add @skyra/editable-commands
-# or npm install @skyra/editable-commands
+```sh
+npm install @skyra/editable-commands
 ```
 
-#### Usage
+## Usage
+
+**For CommonJS**:
 
 ```js
-require('@skyra/editable-commands');
+const { send } = require('@skyra/editable-commands');
+
+client.on('messageCreate', message => {
+	send(message, 'This is my reply!');
+});
 ```
+
+**For ESM**:
 
 ```ts
-import '@skyra/editable-commands';
+import { send } from '@skyra/editable-commands';
+
+client.on('messageCreate', message => {
+	send(message, 'This is my reply!');
+});
 ```
 
-## Meta
-
-### License
-
-Copyright © 2020, [Skyra Project](https://github.com/skyra-project).
-Released under the [MIT License](LICENSE.md).
-
-### Contributing
-
-1. Fork it!
-1. Create your feature branch: `git checkout -b my-new-feature`
-1. Commit your changes: `git commit -am 'Add some feature'`
-1. Push to the branch: `git push origin my-new-feature`
-1. Submit a pull request!
-
-### Buy us some doughnuts
+## Buy us some doughnuts
 
 Skyra Project is open source and always will be, even if we don't get donations. That said, we know there are amazing people who
 may still want to donate just to show their appreciation. Thanks you very much in advance!
@@ -79,7 +73,7 @@ We accept donations through Patreon, BitCoin, Ethereum, and Litecoin. You can us
 [ethereumimage]: https://cdn.skyra.pw/gh-assets/ethereum.png
 [litecoinimage]: https://cdn.skyra.pw/gh-assets/litecoin.png
 
-### Contributors ✨
+## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

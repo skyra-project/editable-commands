@@ -1,7 +1,7 @@
 {
 	"name": "@skyra/editable-commands",
 	"version": "2.0.0",
-	"description": "A framework agnostic library for editable commands.",
+	"description": "A framework agnostic library for editable commands",
 	"author": "@skyra",
 	"license": "MIT",
 	"main": "dist/index.js",
@@ -32,28 +32,28 @@
 		"prepare": "husky install .github/husky"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^12.1.4",
-		"@commitlint/config-conventional": "^12.1.4",
+		"@commitlint/cli": "^13.1.0",
+		"@commitlint/config-conventional": "^13.1.0",
 		"@sapphire/eslint-config": "^3.2.3",
 		"@sapphire/prettier-config": "^1.1.6",
-		"@sapphire/ts-config": "^2.3.2",
-		"@types/node": "^16.4.10",
+		"@sapphire/ts-config": "^3.0.0",
+		"@types/node": "^16.4.13",
 		"@types/ws": "^7.4.7",
-		"@typescript-eslint/eslint-plugin": "^4.28.4",
-		"@typescript-eslint/parser": "^4.28.5",
+		"@typescript-eslint/eslint-plugin": "^4.29.0",
+		"@typescript-eslint/parser": "^4.29.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.22.0",
 		"discord.js": "^13.0.1",
-		"eslint": "^7.30.0",
+		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^3.4.0",
 		"gen-esm-wrapper": "^1.1.2",
 		"husky": "^7.0.1",
-		"lint-staged": "^11.0.1",
+		"lint-staged": "^11.1.2",
 		"prettier": "^2.3.2",
 		"pretty-quick": "^3.1.1",
 		"standard-version": "^9.3.1",
-		"typedoc": "^0.21.4",
+		"typedoc": "^0.21.5",
 		"typescript": "^4.3.5"
 	},
 	"repository": {
@@ -90,7 +90,7 @@
 		"access": "public"
 	},
 	"resolutions": {
-		"acorn": "^8.4.0",
+		"acorn": "^8.4.1",
 		"minimist": "^1.2.5",
 		"dot-prop": "^6.0.1"
 	},
