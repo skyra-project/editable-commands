@@ -42,7 +42,7 @@ export function get(message: Message): Message | null {
  * @param options The options for the message sending, identical to `TextBasedChannel#send`'s options.
  * @returns The response message.
  */
-export async function send(message: Message, options: string | MessageOptions | WebhookMessageOptions): Promise<Message> {
+export async function send(message: Message, options: string | Options): Promise<Message> {
 	const payload = await resolvePayload(message.channel, options);
 	return sendPayload(message, payload);
 }
@@ -58,14 +58,8 @@ export async function reply(message: Message, options: string | ReplyMessageOpti
 	return sendPayload(message, payload);
 }
 
-function resolvePayload(
-	target: MessageTarget,
-	options: string | MessageOptions | WebhookMessageOptions,
-	extra?: MessageOptions | WebhookMessageOptions | undefined
-): Promise<MessagePayload> {
-	if (typeof options === 'string') options = { content: options };
-	else options = { content: null, embeds: [], ...options };
-
+function resolvePayload(target: MessageTarget, options: string | Options, extra?: Options | undefined): Promise<MessagePayload> {
+	options = typeof options === 'string' ? { content: options, ...unsetValues } : { content: null, ...unsetValues, ...options };
 	return MessagePayload.create(target, options, extra).resolveData().resolveFiles();
 }
 
@@ -82,3 +76,13 @@ async function sendPayload(message: Message, payload: MessagePayload): Promise<M
 
 	return response;
 }
+
+type Options = MessageOptions | WebhookMessageOptions;
+
+// This variable is casted like this (instead of `unsetValues: Options`) because `attachments` is a property on
+// `MessageEditOptions`, therefore it does not exist in `MessageOptions`. This makes the property non-assignable, and so
+// it can't be inlined with the other object spreads.
+//
+// As a workaround, I just define this object somewhere so we don't re-create it on each call. It is then casted to the
+// valid type. This way TypeScript is happy.
+const unsetValues = { embeds: [], attachments: [] } as Options;
