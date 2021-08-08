@@ -79,10 +79,10 @@ async function sendPayload(message: Message, payload: MessagePayload): Promise<M
 
 type Options = MessageOptions | WebhookMessageOptions;
 
-// This variable is casted like this (instead of `unsetValues: Options`) because `attachments` is a property from
-// `MessageEditOptions`, and therefore does not exist in `MessageOptions`, this makes the property non-assignable, and
-// can't be inlined with the other object spreads.
+// This variable is casted like this (instead of `unsetValues: Options`) because `attachments` is a property on
+// `MessageEditOptions`, therefore it does not exist in `MessageOptions`. This makes the property non-assignable, and so
+// it can't be inlined with the other object spreads.
 //
-// As a workaround, I just define this object somewhere so we don't re-create it on each call, and cast it to the valid
-// types, this way TypeScript is happy.
+// As a workaround, I just define this object somewhere so we don't re-create it on each call. It is then casted to the
+// valid type. This way TypeScript is happy.
 const unsetValues = { embeds: [], attachments: [] } as Options;
