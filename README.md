@@ -32,7 +32,7 @@ npm install @skyra/editable-commands
 
 ## Usage
 
-### CommonJS
+### JavaScript
 
 #### Without a framework
 
@@ -51,9 +51,9 @@ client.on('messageUpdate', (_oldMessage, newMessage) => {
 #### With [Sapphire Framework][sapphire]
 
 ```js
-const { send } = require('@skyra/editable-commands');
 const { Command } = require('@sapphire/framework');
 const { MessageEmbed } = require('discord.js');
+const { send } = require('@skyra/editable-commands');
 
 module.exports = class UserCommand extends Command {
 	constructor(context, options) {
@@ -64,7 +64,7 @@ module.exports = class UserCommand extends Command {
 		});
 	}
 
-	async run(message, args) {
+	async run(message) {
 		const embed = new MessageEmbed()
 			.setURL('https://github.com/skyra-project/editable-commands')
 			.setColor('#7586D8')
@@ -76,7 +76,7 @@ module.exports = class UserCommand extends Command {
 };
 ```
 
-### ESM
+### TypeScript
 
 #### Without a framework
 
@@ -96,16 +96,16 @@ client.on('messageUpdate', (_oldMessage, newMessage) => {
 
 ```ts
 import { ApplyOptions } from '@sapphire/decorators';
-import { send } from '@skyra/editable-commands';
-import { Command, CommandOptions, Args } from '@sapphire/framework';
+import { Command, CommandOptions } from '@sapphire/framework';
 import { Message, MessageEmbed } from 'discord.js';
+import { send } from '@skyra/editable-commands';
 
 @ApplyOptions<CommandOptions>({
 	description: 'A very cool command',
 	requiredClientPermissions: ['EMBED_LINKS']
 })
 export class UserCommand extends Command {
-	public async run(message: Message, args: Args) {
+	public async run(message: Message) {
 		const embed = new MessageEmbed()
 			.setURL('https://github.com/skyra-project/editable-commands')
 			.setColor('#7586D8')
