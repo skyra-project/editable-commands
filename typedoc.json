@@ -3,7 +3,5 @@
 	"readme": "./README.md",
 	"name": "@skyra/editable-commands",
 	"entryPoints": ["src/index.ts"],
-	"exclude": ["**/node_modules/**", "rollup.config.ts"],
-	"excludeExternals": true,
 	"tsconfig": "./src/tsconfig.json"
 }
