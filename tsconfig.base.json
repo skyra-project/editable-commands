@@ -1,7 +1,6 @@
 {
 	"extends": "@sapphire/ts-config",
 	"compilerOptions": {
-		"module": "ESNext",
 		"target": "ES2020"
 	}
 }

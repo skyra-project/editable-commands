@@ -15,6 +15,7 @@ dist/
 **/*.js.map
 **/*.d.ts
 !src/**/*.d.ts
+!scripts/**/*.mjs
 **/*.tsbuildinfo
 
 # Ignore heapsnapshot and log files
