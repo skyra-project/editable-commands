@@ -59,15 +59,14 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<div align="center">
+					<p><img src="https://cdn.skyra.pw/gh-assets/skyra_avatar.png" alt="Skyra Logo"></p>
 					<a href="#skyraeditable-commands" id="skyraeditable-commands" style="color: inherit; text-decoration: none;">
 						<h1>@skyra/editable-commands</h1>
 					</a>
 					<p><strong>A framework agnostic library for editable commands</strong></p>
 					<p><a href="https://github.com/skyra-project/editable-commands/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/skyra-project/editable-commands" alt="GitHub"></a>
 					<a href="https://depfu.com/github/skyra-project/editable-commands?project_id=14147"><img src="https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg" alt="Depfu"></a></p>
-					<p><a href="https://www.npmjs.com/package/@skyra/editable-commands"><img src="https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square" alt="npm"></a>
-						<img src="https://img.shields.io/bundlephobia/min/@skyra/editable-commands?label=minified&logo=webpack" alt="npm bundle size minified (scoped)">
-					<img src="https://img.shields.io/bundlephobia/minzip/@skyra/editable-commands?label=minified&logo=webpack" alt="npm bundle size minzipped (scoped)"></p>
+					<p><a href="https://www.npmjs.com/package/@skyra/editable-commands"><img src="https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square" alt="npm"></a></p>
 					<p><a href="https://join.skyra.pw"><img src="https://discord.com/api/guilds/254360814063058944/embed.png?style=banner2" alt="Support Server"></a></p>
 				</div>
 				<hr>
@@ -78,8 +77,8 @@
 					<li>  @skyra/editable-commands is a framework agnostic implementation of editable commands for discord.js v13.</li>
 					<li>  Supports CommonJS and ES Modules.</li>
 				</ul>
-				<a href="#installation-and-usage" id="installation-and-usage" style="color: inherit; text-decoration: none;">
-					<h2>Installation and Usage</h2>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
 				</a>
 				<p>You can use the following command to install this package, or replace <code>npm install</code> with your package manager of choice.</p>
 				<pre><code class="language-sh"><span style="color: #000000">npm install @skyra/editable-commands</span>
@@ -87,7 +86,12 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<p><strong>For CommonJS</strong>:</p>
+				<a href="#javascript" id="javascript" style="color: inherit; text-decoration: none;">
+					<h3>JavaScript</h3>
+				</a>
+				<a href="#without-a-framework" id="without-a-framework" style="color: inherit; text-decoration: none;">
+					<h4>Without a framework</h4>
+				</a>
 				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">send</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">);</span>
 
 <span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;messageCreate&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">message</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
@@ -98,7 +102,39 @@
 <span style="color: #000000">    </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">newMessage</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;This is my new reply!&#039;</span><span style="color: #000000">);</span>
 <span style="color: #000000">});</span>
 </code></pre>
-				<p><strong>For ESM</strong>:</p>
+				<a href="#with-sapphire-framework" id="with-sapphire-framework" style="color: inherit; text-decoration: none;">
+					<h4>With <a href="https://github.com/sapphiredev/framework">Sapphire Framework</a></h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">Command</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@sapphire/framework&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">MessageEmbed</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;discord.js&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">send</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #267F99">module</span><span style="color: #000000">.</span><span style="color: #267F99">exports</span><span style="color: #000000"> = </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">UserCommand</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Command</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #001080">context</span><span style="color: #000000">, </span><span style="color: #001080">options</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">super</span><span style="color: #000000">(</span><span style="color: #001080">context</span><span style="color: #000000">, {</span>
+<span style="color: #000000">            ...</span><span style="color: #001080">options</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;A very cool command&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">requiredClientPermissions:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;EMBED_LINKS&#039;</span><span style="color: #000000">]</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #795E26">run</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">embed</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MessageEmbed</span><span style="color: #000000">()</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setURL</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://github.com/skyra-project/editable-commands&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setColor</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#7586D8&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setDescription</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Example description&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setTimestamp</span><span style="color: #000000">();</span>
+
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">, { </span><span style="color: #001080">embeds:</span><span style="color: #000000"> [</span><span style="color: #001080">embed</span><span style="color: #000000">] });</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
+					<h3>TypeScript</h3>
+				</a>
+				<a href="#without-a-framework-1" id="without-a-framework-1" style="color: inherit; text-decoration: none;">
+					<h4>Without a framework</h4>
+				</a>
 				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">send</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;messageCreate&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">message</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
@@ -109,6 +145,31 @@
 <span style="color: #000000">    </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">newMessage</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;This is my new reply!&#039;</span><span style="color: #000000">);</span>
 <span style="color: #000000">});</span>
 </code></pre>
+				<a href="#with-sapphire-framework-1" id="with-sapphire-framework-1" style="color: inherit; text-decoration: none;">
+					<h4>With <a href="https://github.com/sapphiredev/framework">Sapphire Framework</a></h4>
+				</a>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">ApplyOptions</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@sapphire/decorators&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Command</span><span style="color: #000000">, </span><span style="color: #001080">CommandOptions</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@sapphire/framework&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Message</span><span style="color: #000000">, </span><span style="color: #001080">MessageEmbed</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;discord.js&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">send</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">@</span><span style="color: #795E26">ApplyOptions</span><span style="color: #000000">&lt;</span><span style="color: #267F99">CommandOptions</span><span style="color: #000000">&gt;({</span>
+<span style="color: #000000">    </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;A very cool command&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">requiredClientPermissions:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;EMBED_LINKS&#039;</span><span style="color: #000000">]</span>
+<span style="color: #000000">})</span>
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">UserCommand</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Command</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">public</span><span style="color: #000000"> </span><span style="color: #795E26">run</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">: </span><span style="color: #267F99">Message</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">embed</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">MessageEmbed</span><span style="color: #000000">()</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setURL</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;https://github.com/skyra-project/editable-commands&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setColor</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#7586D8&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setDescription</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Example description&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">            .</span><span style="color: #795E26">setTimestamp</span><span style="color: #000000">();</span>
+
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">, { </span><span style="color: #001080">embeds:</span><span style="color: #000000"> [</span><span style="color: #001080">embed</span><span style="color: #000000">] });</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<hr>
 				<a href="#buy-us-some-doughnuts" id="buy-us-some-doughnuts" style="color: inherit; text-decoration: none;">
 					<h2>Buy us some doughnuts</h2>
 				</a>
