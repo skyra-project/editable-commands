@@ -40,6 +40,10 @@ const { send } = require('@skyra/editable-commands');
 client.on('messageCreate', (message) => {
 	send(message, 'This is my reply!');
 });
+
+client.on('messageUpdate', (_oldMessage, newMessage) => {
+	send(newMessage, 'This is my new reply!');
+});
 ```
 
 **For ESM**:
@@ -49,6 +53,10 @@ import { send } from '@skyra/editable-commands';
 
 client.on('messageCreate', (message) => {
 	send(message, 'This is my reply!');
+});
+
+client.on('messageUpdate', (_oldMessage, newMessage) => {
+	send(newMessage, 'This is my new reply!');
 });
 ```
 
