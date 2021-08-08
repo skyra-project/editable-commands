@@ -10,8 +10,6 @@
 [![Depfu](https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg)](https://depfu.com/github/skyra-project/editable-commands?project_id=14147)
 
 [![npm](https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@skyra/editable-commands)
-![npm bundle size minified (scoped)](https://img.shields.io/bundlephobia/min/@skyra/editable-commands?label=minified&logo=webpack)
-![npm bundle size minzipped (scoped)](https://img.shields.io/bundlephobia/minzip/@skyra/editable-commands?label=minified&logo=webpack)
 
 [![Support Server](https://discord.com/api/guilds/254360814063058944/embed.png?style=banner2)](https://join.skyra.pw)
 
