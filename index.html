@@ -39,6 +39,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,77 +58,59 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#skyraeditable-commands" id="skyraeditable-commands" style="color: inherit; text-decoration: none;">
-					<h1>@skyra/editable-commands</h1>
-				</a>
-				<p><a href="https://github.com/skyra-project/editable-commands/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/skyra-project/editable-commands" alt="GitHub"></a>
-				<a href="https://depfu.com/github/skyra-project/editable-commands?project_id=14147"><img src="https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg" alt="Depfu"></a></p>
-				<p><a href="https://www.npmjs.com/package/@skyra/editable-commands"><img src="https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square" alt="npm"></a>
-					<img src="https://img.shields.io/bundlephobia/min/@skyra/editable-commands?label=minified&logo=webpack" alt="npm bundle size minified (scoped)">
-				<img src="https://img.shields.io/bundlephobia/minzip/@skyra/editable-commands?label=minified&logo=webpack" alt="npm bundle size minzipped (scoped)"></p>
-				<p><strong>Table of Contents</strong></p>
-				<ul>
-					<li><a href="#skyraeditable-commands">@skyra/editable-commands</a><ul>
-							<li>  <a href="#about">About</a></li>
-							<li><a href="#installation-and-usage">Installation and Usage</a><ul>
-									<li><a href="#package-managers">Package managers</a><ul>
-											<li>  <a href="#usage">Usage</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#meta">Meta</a><ul>
-									<li>  <a href="#license">License</a></li>
-									<li>  <a href="#contributing">Contributing</a></li>
-									<li>  <a href="#buy-us-some-doughnuts">Buy us some doughnuts</a></li>
-									<li>  <a href="#contributors-%E2%9C%A8">Contributors ✨</a></li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
-					<h2>About</h2>
+				<div align="center">
+					<a href="#skyraeditable-commands" id="skyraeditable-commands" style="color: inherit; text-decoration: none;">
+						<h1>@skyra/editable-commands</h1>
+					</a>
+					<p><strong>A framework agnostic library for editable commands</strong></p>
+					<p><a href="https://github.com/skyra-project/editable-commands/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/skyra-project/editable-commands" alt="GitHub"></a>
+					<a href="https://depfu.com/github/skyra-project/editable-commands?project_id=14147"><img src="https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg" alt="Depfu"></a></p>
+					<p><a href="https://www.npmjs.com/package/@skyra/editable-commands"><img src="https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square" alt="npm"></a>
+						<img src="https://img.shields.io/bundlephobia/min/@skyra/editable-commands?label=minified&logo=webpack" alt="npm bundle size minified (scoped)">
+					<img src="https://img.shields.io/bundlephobia/minzip/@skyra/editable-commands?label=minified&logo=webpack" alt="npm bundle size minzipped (scoped)"></p>
+					<p><a href="https://join.skyra.pw"><img src="https://discord.com/api/guilds/254360814063058944/embed.png?style=banner2" alt="Support Server"></a></p>
+				</div>
+				<hr>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
 				</a>
 				<ul>
 					<li>  @skyra/editable-commands is a framework agnostic implementation of editable commands for discord.js v13.</li>
+					<li>  Supports CommonJS and ES Modules.</li>
 				</ul>
 				<a href="#installation-and-usage" id="installation-and-usage" style="color: inherit; text-decoration: none;">
 					<h2>Installation and Usage</h2>
 				</a>
-				<a href="#package-managers" id="package-managers" style="color: inherit; text-decoration: none;">
-					<h3>Package managers</h3>
-				</a>
-				<pre><code class="language-bash"><span style="color: #000000">yarn add @skyra/editable-commands</span>
-<span style="color: #008000"># or npm install @skyra/editable-commands</span>
+				<p>You can use the following command to install this package, or replace <code>npm install</code> with your package manager of choice.</p>
+				<pre><code class="language-sh"><span style="color: #000000">npm install @skyra/editable-commands</span>
 </code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h4>Usage</h4>
+					<h2>Usage</h2>
 				</a>
-				<pre><code class="language-js"><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">);</span>
+				<p><strong>For CommonJS</strong>:</p>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">send</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;messageCreate&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">message</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;This is my reply!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;messageUpdate&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">_oldMessage</span><span style="color: #000000">, </span><span style="color: #001080">newMessage</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">newMessage</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;This is my new reply!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
 </code></pre>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">;</span>
+				<p><strong>For ESM</strong>:</p>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">send</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@skyra/editable-commands&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;messageCreate&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">message</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;This is my reply!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;messageUpdate&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">_oldMessage</span><span style="color: #000000">, </span><span style="color: #001080">newMessage</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">send</span><span style="color: #000000">(</span><span style="color: #001080">newMessage</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;This is my new reply!&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
 </code></pre>
-				<a href="#meta" id="meta" style="color: inherit; text-decoration: none;">
-					<h2>Meta</h2>
-				</a>
-				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-					<h3>License</h3>
-				</a>
-				<p>Copyright © 2020, <a href="https://github.com/skyra-project">Skyra Project</a>.
-				Released under the <a href="LICENSE.md">MIT License</a>.</p>
-				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
-					<h3>Contributing</h3>
-				</a>
-				<ol>
-					<li>Fork it!</li>
-					<li>Create your feature branch: <code>git checkout -b my-new-feature</code></li>
-					<li>Commit your changes: <code>git commit -am &#39;Add some feature&#39;</code></li>
-					<li>Push to the branch: <code>git push origin my-new-feature</code></li>
-					<li>Submit a pull request!</li>
-				</ol>
 				<a href="#buy-us-some-doughnuts" id="buy-us-some-doughnuts" style="color: inherit; text-decoration: none;">
-					<h3>Buy us some doughnuts</h3>
+					<h2>Buy us some doughnuts</h2>
 				</a>
 				<p>Skyra Project is open source and always will be, even if we don&#39;t get donations. That said, we know there are amazing people who
 				may still want to donate just to show their appreciation. Thanks you very much in advance!</p>
@@ -166,7 +150,7 @@
 						</tr>
 				</tbody></table>
 				<a href="#contributors-✨" id="contributors-✨" style="color: inherit; text-decoration: none;">
-					<h3>Contributors ✨</h3>
+					<h2>Contributors ✨</h2>
 				</a>
 				<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
 				<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
