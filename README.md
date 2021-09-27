@@ -7,7 +7,6 @@
 **A framework agnostic library for editable commands**
 
 [![GitHub](https://img.shields.io/github/license/skyra-project/editable-commands)](https://github.com/skyra-project/editable-commands/blob/main/LICENSE.md)
-[![Depfu](https://badges.depfu.com/badges/e367f2c68b857253ca23e1e8d73d1e14/count.svg)](https://depfu.com/github/skyra-project/editable-commands?project_id=14147)
 
 [![npm](https://img.shields.io/npm/v/@skyra/editable-commands?color=crimson&label=NPM&logo=npm&style=flat-square)](https://www.npmjs.com/package/@skyra/editable-commands)
 
