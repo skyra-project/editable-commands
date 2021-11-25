@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/skyra-project/editable-commands/compare/v2.1.0...v2.1.1) (2021-11-25)
+
+### Bug Fixes
+
+-   always create new empty arrays ([#68](https://github.com/skyra-project/editable-commands/issues/68)) ([406dd08](https://github.com/skyra-project/editable-commands/commit/406dd08835919bee2b7f81eade9dd7b36f113f46))
+
 ## [2.1.0](https://github.com/skyra-project/editable-commands/compare/v2.0.0...v2.1.0) (2021-08-08)
 
 ### Features
