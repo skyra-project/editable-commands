@@ -9,6 +9,10 @@ docs/
 # Ignore tsc dist folder
 dist/
 
+# Yarn files
+.yarn/install-state.gz
+.yarn/build-state.yml
+
 # Ignore JavaScript files
 **/*.js
 **/*.mjs

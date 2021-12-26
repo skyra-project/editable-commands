@@ -22,7 +22,7 @@ jobs:
           node-version: 16
           cache: yarn
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
       - name: Bump Version & Publish
         run: |
           # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
@@ -49,7 +49,7 @@ jobs:
           node-version: 16
           cache: yarn
       - name: Install Dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
       - name: Build documentation
         run: yarn docs
       - name: Publish Docs
