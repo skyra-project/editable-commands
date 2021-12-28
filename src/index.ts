@@ -1,4 +1,14 @@
-import { Message, MessageOptions, MessagePayload, MessageTarget, ReplyMessageOptions, ReplyOptions, WebhookMessageOptions } from 'discord.js';
+import {
+	Constants,
+	DiscordAPIError,
+	Message,
+	MessageOptions,
+	MessagePayload,
+	MessageTarget,
+	ReplyMessageOptions,
+	ReplyOptions,
+	WebhookMessageOptions
+} from 'discord.js';
 
 const replies = new WeakMap<Message, Message>();
 
@@ -26,14 +36,7 @@ export function free(message: Message): boolean {
  * @returns The replied message, if any.
  */
 export function get(message: Message): Message | null {
-	const entry = replies.get(message);
-	if (entry === undefined) return null;
-	if (entry.deleted) {
-		replies.delete(message);
-		return null;
-	}
-
-	return entry;
+	return replies.get(message) ?? null;
 }
 
 /**
@@ -69,10 +72,34 @@ function resolveReplyOptions(message: Message, options: string | ReplyMessageOpt
 	return { messageReference: message, failIfNotExists: options.failIfNotExists ?? message.client.options.failIfNotExists };
 }
 
+async function tryEdit(message: Message, response: Message, payload: MessagePayload) {
+	try {
+		return await response.edit(payload);
+	} catch (error) {
+		// If the error isn't a Discord API Error, re-throw:
+		if (!(error instanceof DiscordAPIError)) throw error;
+
+		// If the error isn't caused by the error triggered by editing a deleted
+		// message, re-throw:
+		if (error.code !== Constants.APIErrors.UNKNOWN_MESSAGE) throw error;
+
+		// Free the response temporarily, serves a dual purpose here:
+		//
+		// - A following `send()` (before a new one was sent) call will not
+		//   trigger this error again.
+		// - If the message send throws, no response will be stored.
+		//
+		// We always call `track()` right after `tryEdit()`, so it'll be tracked
+		// once the message has been sent, provided it did not throw.
+		free(message);
+		return message.channel.send(payload);
+	}
+}
+
 async function sendPayload(message: Message, payload: MessagePayload): Promise<Message> {
 	const existing = get(message);
 
-	const response = await (existing ? existing.edit(payload) : message.channel.send(payload));
+	const response = await (existing ? tryEdit(message, existing, payload) : message.channel.send(payload));
 	track(message, response);
 
 	return response;
