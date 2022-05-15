@@ -27,18 +27,18 @@
 		"prepare": "husky install .github/husky"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.4",
+		"@commitlint/cli": "^16.3.0",
 		"@commitlint/config-conventional": "^16.2.4",
 		"@sapphire/eslint-config": "^4.3.4",
 		"@sapphire/prettier-config": "^1.4.3",
 		"@sapphire/ts-config": "^3.3.4",
 		"@types/node": "^17.0.8",
 		"@types/ws": "^8.5.3",
-		"@typescript-eslint/eslint-plugin": "^5.22.0",
-		"@typescript-eslint/parser": "^5.22.0",
+		"@typescript-eslint/eslint-plugin": "^5.23.0",
+		"@typescript-eslint/parser": "^5.23.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.32.1",
-		"discord.js": "^13.6.0",
+		"discord.js": "^13.7.0",
 		"eslint": "^8.15.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
@@ -89,5 +89,5 @@
 		"access": "public"
 	},
 	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@3.2.0"
+	"packageManager": "yarn@3.2.1"
 }
