@@ -64,8 +64,8 @@ export async function reply(message: Message, options: string | ReplyMessageOpti
 function resolvePayload(target: MessageTarget, options: string | Options, extra?: Options | undefined): Promise<MessagePayload> {
 	options =
 		typeof options === 'string'
-			? { content: options, embeds: [], attachments: [], components: [], files: [], allowedMentions: undefined }
-			: { content: null, embeds: [], attachments: [], components: [], files: [], allowedMentions: undefined, ...options };
+			? { content: options, embeds: [], attachments: [], components: [] }
+			: { content: null, embeds: [], attachments: [], components: [], ...options };
 	return MessagePayload.create(target, options, extra).resolveData().resolveFiles();
 }
 
