@@ -1,0 +1,6 @@
+name: editable-commands
+packagePath: .
+org: skyra
+monoRepo: false
+commitMessageTemplate: 'chore(release): release {{new-version}}'
+tagTemplate: v{{new-version}}

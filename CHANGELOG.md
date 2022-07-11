@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
 
 ### [2.1.2](https://github.com/skyra-project/editable-commands/compare/v2.1.1...v2.1.2) (2021-12-28)
 
