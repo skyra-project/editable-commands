@@ -1,6 +1,6 @@
 {
 	"name": "@skyra/editable-commands",
-	"version": "2.1.2",
+	"version": "2.1.3",
 	"description": "A framework agnostic library for editable commands",
 	"author": "@skyra",
 	"license": "MIT",

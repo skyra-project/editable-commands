@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [2.1.3](https://github.com/skyra-project/editable-commands/compare/v2.1.2...v2.1.3) - (2022-07-11)
+
+## 🐛 Bug Fixes
+
+- Ensure messages retain components, files, and allowedMentions (#144) ([640eecf](https://github.com/skyra-project/editable-commands/commit/640eecf514dfe67b86430312f800d727873c2147))
+
 ### [2.1.2](https://github.com/skyra-project/editable-commands/compare/v2.1.1...v2.1.2) (2021-12-28)
 
 ### [2.1.1](https://github.com/skyra-project/editable-commands/compare/v2.1.0...v2.1.1) (2021-11-25)
