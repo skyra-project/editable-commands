@@ -46,7 +46,12 @@ export function get(message: Message): Message | null {
  * @returns The response message.
  */
 export async function send(message: Message, options: string | Options): Promise<Message> {
-	const payload = await resolvePayload(message.channel, options);
+	const extra: Options = { content: null, components: [] };
+
+	if (message.attachments?.size) extra.attachments = [];
+	if (message.embeds?.length) extra.embeds = [];
+
+	const payload = await resolvePayload(message.channel, options, extra);
 	return sendPayload(message, payload);
 }
 
@@ -62,10 +67,8 @@ export async function reply(message: Message, options: string | ReplyMessageOpti
 }
 
 function resolvePayload(target: MessageTarget, options: string | Options, extra?: Options | undefined): Promise<MessagePayload> {
-	options =
-		typeof options === 'string'
-			? { content: options, embeds: [], attachments: [], components: [] }
-			: { content: null, embeds: [], attachments: [], components: [], ...options };
+	options = typeof options === 'string' ? { ...extra, content: options } : { ...extra, ...options };
+
 	return MessagePayload.create(target, options, extra).resolveData().resolveFiles();
 }
 
