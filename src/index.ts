@@ -1,13 +1,11 @@
 import {
 	Constants,
 	DiscordAPIError,
-	Message,
-	MessageOptions,
 	MessagePayload,
-	MessageTarget,
-	ReplyMessageOptions,
-	ReplyOptions,
-	WebhookMessageOptions
+	type Message,
+	type MessageOptions,
+	type ReplyMessageOptions,
+	type ReplyOptions
 } from 'discord.js';
 
 const replies = new WeakMap<Message, Message>();
@@ -45,9 +43,8 @@ export function get(message: Message): Message | null {
  * @param options The options for the message sending, identical to `TextBasedChannel#send`'s options.
  * @returns The response message.
  */
-export async function send(message: Message, options: string | Options): Promise<Message> {
-	const payload = await resolvePayload(message.channel, options);
-	return sendPayload(message, payload);
+export function send(message: Message, options: string | MessageOptions): Promise<Message> {
+	return handle(message, options);
 }
 
 /**
@@ -56,22 +53,35 @@ export async function send(message: Message, options: string | Options): Promise
  * @param options The options for the message sending, identical to `TextBasedChannel#send`'s options.
  * @returns The response message.
  */
-export async function reply(message: Message, options: string | ReplyMessageOptions): Promise<Message> {
-	const payload = await resolvePayload(message.channel, options, { reply: resolveReplyOptions(message, options) });
-	return sendPayload(message, payload);
-}
-
-function resolvePayload(target: MessageTarget, options: string | Options, extra?: Options | undefined): Promise<MessagePayload> {
-	options =
+export function reply(message: Message, options: string | ReplyMessageOptions): Promise<Message> {
+	const replyOptions: ReplyOptions =
 		typeof options === 'string'
-			? { content: options, embeds: [], attachments: [], components: [] }
-			: { content: null, embeds: [], attachments: [], components: [], ...options };
-	return MessagePayload.create(target, options, extra).resolveData().resolveFiles();
+			? { messageReference: message, failIfNotExists: message.client.options.failIfNotExists }
+			: { messageReference: message, failIfNotExists: options.failIfNotExists ?? message.client.options.failIfNotExists };
+
+	return handle(message, options, { reply: replyOptions });
 }
 
-function resolveReplyOptions(message: Message, options: string | ReplyMessageOptions): ReplyOptions {
-	if (typeof options === 'string') return { messageReference: message, failIfNotExists: message.client.options.failIfNotExists };
-	return { messageReference: message, failIfNotExists: options.failIfNotExists ?? message.client.options.failIfNotExists };
+async function handle(message: Message, options: string | MessageOptions, extra?: MessageOptions | undefined): Promise<Message> {
+	const existing = get(message);
+
+	const payloadOptions = existing ? resolveEditPayload(existing, options) : resolveSendPayload(options);
+	const payload = await MessagePayload.create(message.channel, payloadOptions, extra).resolveData().resolveFiles();
+	const response = await (existing ? tryEdit(message, existing, payload) : message.channel.send(payload));
+	track(message, response);
+
+	return response;
+}
+
+function resolveSendPayload(options: string | MessageOptions): MessageOptions {
+	return typeof options === 'string' ? { content: options, components: [] } : { components: [], ...options };
+}
+
+function resolveEditPayload(response: Message, options: string | MessageOptions): MessageOptions {
+	options = resolveSendPayload(options);
+	if (response.embeds.length) options.embeds ??= [];
+	if (response.attachments.size) options.attachments ??= [];
+	return options;
 }
 
 async function tryEdit(message: Message, response: Message, payload: MessagePayload) {
@@ -97,14 +107,3 @@ async function tryEdit(message: Message, response: Message, payload: MessagePayl
 		return message.channel.send(payload);
 	}
 }
-
-async function sendPayload(message: Message, payload: MessagePayload): Promise<Message> {
-	const existing = get(message);
-
-	const response = await (existing ? tryEdit(message, existing, payload) : message.channel.send(payload));
-	track(message, response);
-
-	return response;
-}
-
-type Options = MessageOptions | WebhookMessageOptions;
