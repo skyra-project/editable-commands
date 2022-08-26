@@ -3,5 +3,8 @@
 	"readme": "./README.md",
 	"name": "@skyra/editable-commands",
 	"entryPoints": ["src/index.ts"],
-	"tsconfig": "./src/tsconfig.json"
+	"tsconfig": "./src/tsconfig.json",
+	"compilerOptions": {
+		"skipLibCheck": true
+	}
 }
