@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [2.1.4](https://github.com/skyra-project/editable-commands/compare/v2.1.3...v2.1.4) - (2022-08-26)
+
+## 🐛 Bug Fixes
+
+- Add smarter state tracking (#163) ([bab8053](https://github.com/skyra-project/editable-commands/commit/bab8053bacd8adb0c459fe92c19287db9f8e5550))
+
+## 📝 Documentation
+
+- Fix typedoc ([39d15bf](https://github.com/skyra-project/editable-commands/commit/39d15bf03f3746803ee9422601bdfec63f95272d))
+- Add KrishAgarwal2811 as a contributor for code (#149) ([ba6bbaf](https://github.com/skyra-project/editable-commands/commit/ba6bbaf9aff5ba99df11e706ab312aadfaf97773))
+
 # [2.1.3](https://github.com/skyra-project/editable-commands/compare/v2.1.2...v2.1.3) - (2022-07-11)
 
 ## 🐛 Bug Fixes
