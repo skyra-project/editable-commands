@@ -40,8 +40,8 @@
 		"@sapphire/ts-config": "^3.3.4",
 		"@types/node": "^18.7.13",
 		"@types/ws": "^8.5.3",
-		"@typescript-eslint/eslint-plugin": "^5.36.1",
-		"@typescript-eslint/parser": "^5.36.1",
+		"@typescript-eslint/eslint-plugin": "^5.36.2",
+		"@typescript-eslint/parser": "^5.36.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.33.5",
 		"discord.js": "^13.10.3",
@@ -55,7 +55,7 @@
 		"pretty-quick": "^3.1.3",
 		"tsup": "^6.2.3",
 		"typedoc": "^0.23.14",
-		"typescript": "^4.8.2"
+		"typescript": "^4.8.3"
 	},
 	"resolutions": {
 		"ansi-regex": "^5.0.1",
