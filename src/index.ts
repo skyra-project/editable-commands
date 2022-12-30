@@ -1,14 +1,17 @@
 import {
-	Constants,
 	DiscordAPIError,
+	MessageCreateOptions,
 	MessagePayload,
+	MessageReplyOptions,
+	RESTJSONErrorCodes,
 	type Message,
-	type MessageOptions,
-	type ReplyMessageOptions,
+	type MessageEditOptions,
 	type ReplyOptions
 } from 'discord.js';
 
 const replies = new WeakMap<Message, Message>();
+
+export type MessageOptions = MessageCreateOptions | MessageReplyOptions | MessageEditOptions;
 
 /**
  * Tracks a response with a message, in a way that if {@link send} is called with `message`, `response` will be edited.
@@ -53,11 +56,11 @@ export function send(message: Message, options: string | MessageOptions): Promis
  * @param options The options for the message sending, identical to `TextBasedChannel#send`'s options.
  * @returns The response message.
  */
-export function reply(message: Message, options: string | ReplyMessageOptions): Promise<Message> {
+export function reply(message: Message, options: string | MessageOptions): Promise<Message> {
 	const replyOptions: ReplyOptions =
 		typeof options === 'string'
 			? { messageReference: message, failIfNotExists: message.client.options.failIfNotExists }
-			: { messageReference: message, failIfNotExists: options.failIfNotExists ?? message.client.options.failIfNotExists };
+			: { messageReference: message, failIfNotExists: Reflect.get(options, 'failIfNotExists') ?? message.client.options.failIfNotExists };
 
 	return handle(message, options, { reply: replyOptions });
 }
@@ -66,7 +69,7 @@ async function handle(message: Message, options: string | MessageOptions, extra?
 	const existing = get(message);
 
 	const payloadOptions = existing ? resolveEditPayload(existing, options) : resolveSendPayload(options);
-	const payload = await MessagePayload.create(message.channel, payloadOptions, extra).resolveData().resolveFiles();
+	const payload = await MessagePayload.create(message.channel, payloadOptions, extra).resolveBody().resolveFiles();
 	const response = await (existing ? tryEdit(message, existing, payload) : message.channel.send(payload));
 	track(message, response);
 
@@ -77,7 +80,7 @@ function resolveSendPayload(options: string | MessageOptions): MessageOptions {
 	return typeof options === 'string' ? { content: options, components: [] } : { components: [], ...options };
 }
 
-function resolveEditPayload(response: Message, options: string | MessageOptions): MessageOptions {
+function resolveEditPayload(response: Message, options: string | MessageEditOptions): MessageOptions {
 	options = resolveSendPayload(options);
 	if (response.embeds.length) options.embeds ??= [];
 	if (response.attachments.size) options.attachments ??= [];
@@ -93,7 +96,7 @@ async function tryEdit(message: Message, response: Message, payload: MessagePayl
 
 		// If the error isn't caused by the error triggered by editing a deleted
 		// message, re-throw:
-		if (error.code !== Constants.APIErrors.UNKNOWN_MESSAGE) throw error;
+		if (error.code !== RESTJSONErrorCodes.UnknownMessage) throw error;
 
 		// Free the response temporarily, serves a dual purpose here:
 		//
