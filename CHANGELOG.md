@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [3.0.0](https://github.com/skyra-project/editable-commands/compare/v2.1.4...v3.0.0) - (2022-12-30)
+
+## 📝 Documentation
+
+- Change name ([d55e384](https://github.com/skyra-project/editable-commands/commit/d55e384a7b7916ca46f753cfcc272b0c0f461286))
+
+## 🚀 Features
+
+- **deps:** Support for discord.js v14 (#194) ([e7d9682](https://github.com/skyra-project/editable-commands/commit/e7d9682d83752c29333cfed65444ec6f97a032ec))
+  - 💥 **BREAKING CHANGE:** This package now required DiscordJS v14. This means v13 is no longer supported.
+
 # [2.1.4](https://github.com/skyra-project/editable-commands/compare/v2.1.3...v2.1.4) - (2022-08-26)
 
 ## 🐛 Bug Fixes
