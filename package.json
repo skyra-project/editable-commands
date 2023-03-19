@@ -38,10 +38,10 @@
 		"@sapphire/eslint-config": "^4.3.8",
 		"@sapphire/prettier-config": "^1.4.5",
 		"@sapphire/ts-config": "^3.3.4",
-		"@types/node": "^18.15.0",
+		"@types/node": "^18.15.3",
 		"@types/ws": "^8.5.4",
-		"@typescript-eslint/eslint-plugin": "^5.54.1",
-		"@typescript-eslint/parser": "^5.54.1",
+		"@typescript-eslint/eslint-plugin": "^5.55.0",
+		"@typescript-eslint/parser": "^5.55.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.37.25",
 		"discord.js": "^14.7.1",
@@ -54,7 +54,7 @@
 		"prettier": "^2.8.4",
 		"pretty-quick": "^3.1.3",
 		"tsup": "^6.6.3",
-		"typedoc": "^0.23.26",
+		"typedoc": "^0.23.27",
 		"typescript": "^4.9.5"
 	},
 	"resolutions": {
@@ -95,5 +95,5 @@
 		"access": "public"
 	},
 	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@3.4.1"
+	"packageManager": "yarn@3.5.0"
 }
