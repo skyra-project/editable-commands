@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [3.0.1](https://github.com/skyra-project/editable-commands/compare/v3.0.0...v3.0.1) - (2023-04-02)
+
+## 📝 Documentation
+
+- Fix name ([4b98668](https://github.com/skyra-project/editable-commands/commit/4b98668f43710248d75f8aa40fa551c299b5fb9c))
+
 # [3.0.0](https://github.com/skyra-project/editable-commands/compare/v2.1.4...v3.0.0) - (2022-12-30)
 
 ## 📝 Documentation
