@@ -65,10 +65,10 @@ export function reply(message: Message, options: string | MessageOptions): Promi
 	return handle(message, options, { reply: replyOptions });
 }
 
-async function handle(message: Message, options: string | MessageOptions, extra?: MessageOptions | undefined): Promise<Message> {
+async function handle<T extends MessageOptions>(message: Message, options: string | T, extra?: T | undefined): Promise<Message> {
 	const existing = get(message);
 
-	const payloadOptions = existing ? resolveEditPayload(existing, options) : resolveSendPayload(options);
+	const payloadOptions = existing ? resolveEditPayload(existing, options as MessageEditOptions) : resolveSendPayload<T>(options);
 	const payload = await MessagePayload.create(message.channel, payloadOptions, extra).resolveBody().resolveFiles();
 	const response = await (existing ? tryEdit(message, existing, payload) : message.channel.send(payload));
 	track(message, response);
@@ -76,12 +76,12 @@ async function handle(message: Message, options: string | MessageOptions, extra?
 	return response;
 }
 
-function resolveSendPayload(options: string | MessageOptions): MessageOptions {
-	return typeof options === 'string' ? { content: options, components: [] } : { components: [], ...options };
+function resolveSendPayload<T extends MessageOptions>(options: string | MessageOptions): T {
+	return typeof options === 'string' ? ({ content: options, components: [] } as unknown as T) : ({ components: [], ...options } as T);
 }
 
-function resolveEditPayload(response: Message, options: string | MessageEditOptions): MessageOptions {
-	options = resolveSendPayload(options);
+function resolveEditPayload(response: Message, options: string | MessageEditOptions): MessageEditOptions {
+	options = resolveSendPayload<MessageEditOptions>(options);
 	if (response.embeds.length) options.embeds ??= [];
 	if (response.attachments.size) options.attachments ??= [];
 	return options;
