@@ -1,11 +1,11 @@
 import {
 	DiscordAPIError,
-	MessageCreateOptions,
 	MessagePayload,
-	MessageReplyOptions,
 	RESTJSONErrorCodes,
 	type Message,
+	type MessageCreateOptions,
 	type MessageEditOptions,
+	type MessageReplyOptions,
 	type ReplyOptions
 } from 'discord.js';
 
