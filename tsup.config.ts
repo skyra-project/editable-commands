@@ -15,5 +15,5 @@ const baseOptions: Options = {
 
 export default [
 	defineConfig({ ...baseOptions, outDir: 'dist/cjs', format: 'cjs' }),
-	defineConfig({ ...baseOptions, outDir: 'dist/esm', format: 'esm', outExtension: () => ({ js: '.mjs', dts: '.d.mts' }) })
+	defineConfig({ ...baseOptions, outDir: 'dist/esm', format: 'esm', outExtension: () => ({ js: '.mjs' }) })
 ];
