@@ -4,31 +4,36 @@
 	"description": "A framework agnostic library for editable commands",
 	"author": "@skyra",
 	"license": "MIT",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"type": "module",
+	"main": "dist/cjs/index.cjs",
+	"module": "dist/esm/index.mjs",
+	"types": "dist/cjs/index.d.cts",
 	"exports": {
-		"types": "./dist/index.d.ts",
-		"import": "./dist/index.mjs",
-		"require": "./dist/index.js"
+		"import": {
+			"types": "./dist/esm/index.d.mts",
+			"default": "./dist/esm/index.mjs"
+		},
+		"require": {
+			"types": "./dist/cjs/index.d.cts",
+			"default": "./dist/cjs/index.cjs"
+		}
 	},
 	"sideEffects": false,
 	"homepage": "https://skyra-project.github.io/editable-commands",
-	"files": [
-		"dist/**/*.js*",
-		"dist/**/*.mjs*",
-		"dist/**/*.d*"
-	],
 	"scripts": {
 		"lint": "eslint src --ext ts --fix",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"docs": "typedoc",
-		"build": "tsup",
+		"build": "tsup && yarn build:rename-mjs-index",
+		"build:rename-mjs-index": "node scripts/rename-mjs-index.mjs",
 		"typecheck": "tsc -p tsconfig.eslint.json",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run",
 		"prepack": "yarn build"
 	},
+	"files": [
+		"dist/"
+	],
 	"devDependencies": {
 		"@commitlint/cli": "^19.3.0",
 		"@commitlint/config-conventional": "^19.2.2",
