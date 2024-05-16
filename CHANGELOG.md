@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [3.0.2](https://github.com/skyra-project/editable-commands/compare/v3.0.1...v3.0.2) - (2024-05-16)
+
+## 🐛 Bug Fixes
+
+- Split CJS and ESM builds correctly (#295) ([5f37869](https://github.com/skyra-project/editable-commands/commit/5f3786997d6d5aedb196bd2f53e7ab32d33b4a5b))
+
 # [3.0.1](https://github.com/skyra-project/editable-commands/compare/v3.0.0...v3.0.1) - (2023-04-02)
 
 ## 📝 Documentation
