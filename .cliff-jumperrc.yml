@@ -4,3 +4,8 @@ org: skyra
 monoRepo: false
 commitMessageTemplate: 'chore(release): release {{new-version}}'
 tagTemplate: v{{new-version}}
+identifierBase: false
+pushTag: true
+githubRelease: true
+githubReleaseLatest: true
+githubRepo: skyra-project/editable-commands
