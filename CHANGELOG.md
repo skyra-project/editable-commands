@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [3.0.3](https://github.com/skyra-project/editable-commands/compare/v3.0.2...v3.0.3) - (2024-09-19)
+
+## 🏠 Refactor
+
+- Fix for discordjs 14.16.2 partialgroupdm typings ([000fc16](https://github.com/skyra-project/editable-commands/commit/000fc16fa2225db939c3616d5eeae78aed09f3be))
+
 # [3.0.2](https://github.com/skyra-project/editable-commands/compare/v3.0.1...v3.0.2) - (2024-05-16)
 
 ## 🐛 Bug Fixes
