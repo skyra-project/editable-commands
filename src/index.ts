@@ -6,6 +6,7 @@ import {
 	type MessageCreateOptions,
 	type MessageEditOptions,
 	type MessageReplyOptions,
+	type PartialGroupDMChannel,
 	type ReplyOptions
 } from 'discord.js';
 
@@ -70,7 +71,7 @@ async function handle<T extends MessageOptions>(message: Message, options: strin
 
 	const payloadOptions = existing ? resolveEditPayload(existing, options as MessageEditOptions) : resolveSendPayload<T>(options);
 	const payload = await MessagePayload.create(message.channel, payloadOptions, extra).resolveBody().resolveFiles();
-	const response = await (existing ? tryEdit(message, existing, payload) : message.channel.send(payload));
+	const response = await (existing ? tryEdit(message, existing, payload) : trySend(message, payload));
 	track(message, response);
 
 	return response;
@@ -107,6 +108,10 @@ async function tryEdit(message: Message, response: Message, payload: MessagePayl
 		// We always call `track()` right after `tryEdit()`, so it'll be tracked
 		// once the message has been sent, provided it did not throw.
 		free(message);
-		return message.channel.send(payload);
+		return trySend(message, payload);
 	}
+}
+
+async function trySend(message: Message, payload: MessagePayload) {
+	return (message.channel as Exclude<Message['channel'], PartialGroupDMChannel>).send(payload);
 }
