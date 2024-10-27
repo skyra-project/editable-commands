@@ -8,4 +8,5 @@ identifierBase: false
 pushTag: true
 githubRelease: true
 githubReleaseLatest: true
-githubRepo: skyra-project/editable-commands
+gitRepo: skyra-project/editable-commands
+gitHostVariant: github
