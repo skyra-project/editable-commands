@@ -41,7 +41,7 @@
 		"@sapphire/eslint-config": "^5.0.5",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@types/node": "^22.9.3",
+		"@types/node": "^22.10.1",
 		"@types/ws": "^8.5.13",
 		"@typescript-eslint/eslint-plugin": "^7.13.1",
 		"@typescript-eslint/parser": "^7.13.1",
@@ -52,7 +52,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
 		"lint-staged": "^15.2.10",
-		"prettier": "^3.3.3",
+		"prettier": "^3.4.1",
 		"tsup": "^8.3.5",
 		"typedoc": "^0.26.1",
 		"typescript": "^5.5.2"
@@ -96,5 +96,5 @@
 		"access": "public"
 	},
 	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@4.5.2"
+	"packageManager": "yarn@4.5.3"
 }
