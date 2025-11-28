@@ -40,19 +40,19 @@
 		"@favware/cliff-jumper": "^6.0.0",
 		"@sapphire/eslint-config": "^5.0.6",
 		"@sapphire/prettier-config": "^2.0.0",
-		"@sapphire/ts-config": "^5.0.1",
+		"@sapphire/ts-config": "^5.0.3",
 		"@types/node": "^24.10.1",
 		"@types/ws": "^8.18.1",
 		"@typescript-eslint/eslint-plugin": "^7.13.1",
 		"@typescript-eslint/parser": "^7.13.1",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.37.98",
-		"discord.js": "^14.24.2",
+		"discord.js": "^14.25.1",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.4",
-		"lint-staged": "^16.2.6",
-		"prettier": "^3.6.2",
+		"lint-staged": "^16.2.7",
+		"prettier": "^3.7.1",
 		"tsup": "^8.5.1",
 		"typedoc": "^0.26.1",
 		"typescript": "^5.5.2"
@@ -96,5 +96,5 @@
 		"access": "public"
 	},
 	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@4.11.0"
+	"packageManager": "yarn@4.12.0"
 }
