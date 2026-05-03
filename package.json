@@ -35,8 +35,8 @@
 		"dist/"
 	],
 	"devDependencies": {
-		"@commitlint/cli": "^20.5.2",
-		"@commitlint/config-conventional": "^20.5.0",
+		"@commitlint/cli": "^20.5.3",
+		"@commitlint/config-conventional": "^20.5.3",
 		"@favware/cliff-jumper": "^6.1.0",
 		"@sapphire/eslint-config": "^5.0.6",
 		"@sapphire/prettier-config": "^2.0.0",
@@ -47,7 +47,7 @@
 		"@typescript-eslint/parser": "^7.13.1",
 		"cz-conventional-changelog": "^3.3.0",
 		"discord-api-types": "^0.37.98",
-		"discord.js": "^14.26.3",
+		"discord.js": "^14.26.4",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.5",
