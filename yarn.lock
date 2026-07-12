@@ -1069,18 +1069,18 @@ __metadata:
     "@sapphire/eslint-config": "npm:^5.0.6"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/ts-config": "npm:^5.0.3"
-    "@types/node": "npm:^24.13.2"
+    "@types/node": "npm:^24.13.3"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.1"
     "@typescript-eslint/parser": "npm:^7.13.1"
     cz-conventional-changelog: "npm:^3.3.0"
     discord-api-types: "npm:^0.37.98"
-    discord.js: "npm:^14.26.4"
+    discord.js: "npm:^14.26.5"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.6"
     lint-staged: "npm:^16.4.0"
-    prettier: "npm:^3.9.4"
+    prettier: "npm:^3.9.5"
     tsup: "npm:^8.5.1"
     typedoc: "npm:^0.26.1"
     typescript: "npm:^5.5.2"
@@ -1101,12 +1101,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.13.2":
-  version: 24.13.2
-  resolution: "@types/node@npm:24.13.2"
+"@types/node@npm:*, @types/node@npm:^24.13.3":
+  version: 24.13.3
+  resolution: "@types/node@npm:24.13.3"
   dependencies:
     undici-types: "npm:~7.18.0"
-  checksum: 10/2b8cb95ada191ecc788fef91d7cdb86dff24f6895b510e1fb495cc001832709fa8fc3e1eeb27d64bda52b3f74f9e91acf42431e98e3e6876de1e53acce7f7602
+  checksum: 10/cfa6ed1e16c4624d1e83b09aeb72a2f50a7e17d837bf5a1259a52e346f33a693afd289402d3b6118ce3abea7aff35f2a4f13a0284b96bc5807a50f0e22e1ec77
   languageName: node
   linkType: hard
 
@@ -1993,16 +1993,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.33, discord-api-types@npm:^0.38.40":
-  version: 0.38.44
-  resolution: "discord-api-types@npm:0.38.44"
-  checksum: 10/c3a0aab16d52ba45c26d4aa5510b8e23760467c42f2685b25d7f38c3ab021d02132fc2197b959c5fb7ad88e6654275b4b81b90b759ac4eea81931e9c6974f002
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.33, discord-api-types@npm:^0.38.40, discord-api-types@npm:^0.38.48":
+  version: 0.38.49
+  resolution: "discord-api-types@npm:0.38.49"
+  checksum: 10/31bf00dce0f1d5bf312a442b896d72c5455931a7b365642bbf2d2eca5728dbc28306dfc9a5811c67d04a484d2e6121eab2adc10db18e9e313ce67c875bdae27c
   languageName: node
   linkType: hard
 
-"discord.js@npm:^14.26.4":
-  version: 14.26.4
-  resolution: "discord.js@npm:14.26.4"
+"discord.js@npm:^14.26.5":
+  version: 14.26.5
+  resolution: "discord.js@npm:14.26.5"
   dependencies:
     "@discordjs/builders": "npm:^1.14.1"
     "@discordjs/collection": "npm:1.5.3"
@@ -2011,13 +2011,13 @@ __metadata:
     "@discordjs/util": "npm:^1.2.0"
     "@discordjs/ws": "npm:^1.2.3"
     "@sapphire/snowflake": "npm:3.5.3"
-    discord-api-types: "npm:^0.38.40"
+    discord-api-types: "npm:^0.38.48"
     fast-deep-equal: "npm:3.1.3"
     lodash.snakecase: "npm:4.1.1"
     magic-bytes.js: "npm:^1.13.0"
     tslib: "npm:^2.6.3"
     undici: "npm:6.24.1"
-  checksum: 10/bff70f8d00f387bebf24302635910e2f0bc837800fcb6e3a31295842a8dc4809a4cbb7baeda402731c7a7ebcfd450097039dff1019dcaddf35cb8ff7f66be086
+  checksum: 10/cab994368e774771ff4942f811db4cc279ca222f8eb7b9c17ba23960a921cf2cb4ec2dade2cec2a78e1685dc07c551a79bdb463cb44ca2d5f96da4efdcd37378
   languageName: node
   linkType: hard
 
@@ -4100,12 +4100,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.0, prettier@npm:^3.5.3, prettier@npm:^3.9.4":
-  version: 3.9.4
-  resolution: "prettier@npm:3.9.4"
+"prettier@npm:^3.0.0, prettier@npm:^3.5.3, prettier@npm:^3.9.5":
+  version: 3.9.5
+  resolution: "prettier@npm:3.9.5"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/4a0dc4389d442f5aca0beb12778c90b6ceb9831940b01a1df5eba9150b5ce96fa52eda9074a10a370e732adc03e2f645597dfd8b7e3f1e94dee28df01004a0fd
+  checksum: 10/b6587f1582ba653ce5207ee227aff646500e5098646931088f176d1ab090b1f47d5a333f1facd634e9aa7dcb15c45940e2cec13a5962534cf0200617517b67b6
   languageName: node
   linkType: hard
 
